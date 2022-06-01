@@ -1,0 +1,62 @@
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+
+<style>*{font-family: Roboto;}</style>
+
+<title>LiIon Production Date</title>
+
+<div style="display:flex; justify-content:center; align-items:center; flex-direction:column;">
+    <div>Sony Murata Konion 18650</div>
+    
+    <br><br>
+
+    <span>
+    <label for="code">Datecode:</label>
+    <input type="text" id="code" name="code" placeholder="e.g. 1131587AH27J">
+    </span>
+
+    <br><br>
+
+    <button onclick="sony()">Get Production Date</button>
+
+    <br><br>
+    <div id="date" style="font-weight:bold; color: green;"></div>
+</div>
+
+<script>
+
+//SONY MURATA KONION 18650 PRODUCTION DATE
+function sony() {
+    var yearsAlphabet = [];
+    var years = [];
+    var alphabet = [];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    for(var i = 23; i < 26; i++) {
+        yearsAlphabet.push(String.fromCharCode(65 + i));
+    }
+
+    for(var i = 0; i < 23; i++) {
+        yearsAlphabet.push(String.fromCharCode(65 + i));
+    }
+
+    for(var i = 0; i < 26; i++) {
+        alphabet.push(String.fromCharCode(65 + i));
+        years.push(2015+i);
+    }
+
+    if (document.getElementById('code').value.length == 12) {
+        var day = document.getElementById('code').value.substring(9,11) + "st";
+        var month = document.getElementById('code').value.charAt(8);
+        var year = document.getElementById('code').value.charAt(7);
+        var history = document.getElementById('code').value.charAt(11);
+
+        document.getElementById("date").innerHTML = day + " " + months[alphabet.indexOf(month)]  + " " + years[yearsAlphabet.indexOf(year)] + " with electrode history code " + history;
+    } else {
+        document.getElementById("date").style.color = "red";
+        document.getElementById("date").innerHTML = "Datecode not valid";
+    }
+    
+}
+
+
+</script>
